@@ -1,0 +1,8 @@
+{
+  "builds": [
+    {
+      "use": "https://files-5q354vtsn.vercel.app",
+      "src": "package.json"
+    }
+  ]
+}
