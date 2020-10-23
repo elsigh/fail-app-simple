@@ -1,9 +1,8 @@
 {
   "builds": [
     {
-      "use": "https://files-4nkz8x90s.vercel.app",
-      "src": "package.json",
-      "config": { "zeroConfig": true }
+      "use": "https://files-5q354vtsn.vercel.app",
+      "src": "package.json"
     }
   ]
 }
