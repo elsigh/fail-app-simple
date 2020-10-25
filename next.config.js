@@ -16,4 +16,16 @@ module.exports = {
     SENTRY_DSN: NEXT_PUBLIC_SENTRY_DSN,
     SENTRY_RELEASE: NEXT_PUBLIC_SENTRY_RELEASE,
   },
+  webpack: (config, options) => {
+    // The build ID is only available here, so this is where we'll define its
+    // environment variable
+    config.plugins.push(
+      new options.webpack.DefinePlugin({
+        'process.env.NEXT_PUBLIC_SENTRY_RELEASE': JSON.stringify(
+          options.buildId
+        ),
+      })
+    )
+    return config
+  }
 }
