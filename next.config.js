@@ -54,7 +54,7 @@ module.exports = {
       config.plugins.push(
         new SentryWebpackPlugin({
           include: '.next',
-          stripPrefix: ['webpack://_N_E/'],
+          //stripPrefix: ['webpack://_N_E/'],
           urlPrefix: '~/_next',
           release: options.buildId,
         })
