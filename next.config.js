@@ -13,5 +13,6 @@ module.exports = {
     // for variables with the NEXT_PUBLIC prefix that are automatically pulled
     // in
     NEXT_PUBLIC_SENTRY_DSN: NEXT_PUBLIC_SENTRY_DSN,
+    SENTRY_DSN: NEXT_PUBLIC_SENTRY_DSN,
   },
 }
