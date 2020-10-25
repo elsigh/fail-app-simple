@@ -1,6 +1,18 @@
+// Use the hidden-source-map option when you don't want the source maps to be
+// publicly available on the servers, only to the error reporting
+const withSourceMaps = require('@zeit/next-source-maps')()
+
+// Use the SentryWebpack plugin to upload the source maps during build step
+const SentryWebpackPlugin = require('@sentry/webpack-plugin')
+
 const {
   NEXT_PUBLIC_SENTRY_DSN,
   NEXT_PUBLIC_SENTRY_RELEASE,
+  SENTRY_ORG,
+  SENTRY_PROJECT,
+  SENTRY_AUTH_TOKEN,
+  NODE_ENV,
+  VERCEL_URL,
 } = process.env
 
 process.env.SENTRY_DSN = NEXT_PUBLIC_SENTRY_DSN
@@ -26,6 +38,29 @@ module.exports = {
         ),
       })
     )
+    // When all the Sentry configuration env variables are available/configured
+    // The Sentry webpack plugin gets pushed to the webpack plugins to build
+    // and upload the source maps to sentry.
+    // This is an alternative to manually uploading the source maps
+    // Note: This is disabled unless the VERCEL_URL environment variable is
+    // present, which is usually only during a Vercel build
+    if (
+      process.env.SENTRY_DSN &&
+      SENTRY_ORG &&
+      SENTRY_PROJECT &&
+      SENTRY_AUTH_TOKEN &&
+      VERCEL_URL &&
+      NODE_ENV === 'production'
+    ) {
+      config.plugins.push(
+        new SentryWebpackPlugin({
+          include: '.next',
+          stripPrefix: ['webpack://_N_E/'],
+          urlPrefix: '~/_next',
+          release: options.buildId,
+        })
+      )
+    }
     return config
   }
 }
