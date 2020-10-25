@@ -8,7 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
-    "@next/plugin-sentry": "^9.5.5",
+    "@next/plugin-sentry": "kamilogorek/next-plugin-sentry",
     "@sentry/webpack-plugin": "^1.13.0",
     "@zeit/next-source-maps": "^0.0.3",
     "next": "canary",
