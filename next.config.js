@@ -49,7 +49,6 @@ module.exports = {
       SENTRY_ORG &&
       SENTRY_PROJECT &&
       SENTRY_AUTH_TOKEN &&
-      VERCEL_URL &&
       NODE_ENV === 'production'
     ) {
       config.plugins.push(
